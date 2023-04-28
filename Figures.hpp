@@ -11,24 +11,26 @@ class Face;
 
 class Location
 {
-public:
+ protected:
 	int x;
 	int y;
-
+ public:
 	Location(int x, int y);
 	virtual void move(int offsetX, int offsetY);
 };
 
 class Point : public Location
 {
-public:
+ public:
 	Point(int x, int y);
 	virtual void show(HDC hdc);
 };
 
 class Face : public Point
 {
-public:
+ protected:
+	int weightLine = 4;
+ public:
 	Face(int x, int y);
 	void onKeyDown(WPARAM wParam);
 	void show(HDC hdc);

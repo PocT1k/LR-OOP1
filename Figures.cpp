@@ -23,28 +23,29 @@ void Point::show(HDC hdc)
 Face::Face(int x, int y) : Point(x, y) {};
 
 void Face::onKeyDown(WPARAM wParam) {
+	int step = 1;
 	switch (wParam) {
 	case 'W':
-		move(0, -1);
+		move(0, -step);
 		break;
 	case 'S':
-		move(0, 1);
+		move(0, step);
 		break;
 	case 'A':
-		move(-1, 0);
+		move(-step, 0);
 		break;
 	case 'D':
-		move(1, 0);
+		move(step, 0);
 		break;
 	}
 }
 
 void Face::show(HDC hdc)
 {
-	int weight = 4;
-	HPEN pen = CreatePen(PS_SOLID, weight * 2, RGB(0, 0, 0));
-	this->x += weight; this->y += weight;
+	HPEN pen = CreatePen(PS_SOLID, weightLine * 2, RGB(0, 0, 0));
 	SelectObject(hdc, pen);
+	this->x += weightLine;
+	this->y += weightLine;
 
 	Ellipse(hdc, 0 + x, 0 + y, 200 + x, 200 + y);
 	Ellipse(hdc, 50 + x, 50 + y, 80 + x, 80 + y);
@@ -54,7 +55,8 @@ void Face::show(HDC hdc)
 	MoveToEx(hdc, 65 + x, 150 + y, NULL);
 	LineTo(hdc, 135 + x, 150 + y);
 
-	this->x -= weight; this->y -= weight;
 	SelectObject(hdc, GetStockObject(BLACK_PEN));
 	DeleteObject(pen);
+	this->x -= weightLine;
+	this->y -= weightLine;
 }
