@@ -39,7 +39,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	HWND hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, szWindowClass, szTitle,
 		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
-		800, 600, NULL, NULL, hInstance, NULL);
+		1024, 512, NULL, NULL, hInstance, NULL);
 
 	if (!hWnd) {
 		MessageBox(NULL, _T("Call to CreateWindow failed!"), szTitle, NULL);
@@ -72,19 +72,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		InvalidateRect(hWnd, NULL, TRUE);
 		break;
 	}
-	case WM_KEYUP:
-	{
-		InvalidateRect(hWnd, NULL, TRUE);
-		break;
-	}
-	case WM_LBUTTONDOWN:
-		POINT p;
-		GetCursorPos(&p);
-		ScreenToClient(hWnd, &p);
-
-		InvalidateRect(hWnd, NULL, TRUE);
-
-		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 

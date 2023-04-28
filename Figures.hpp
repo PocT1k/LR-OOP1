@@ -16,7 +16,6 @@ class Location
 	int y;
  public:
 	Location(int x, int y);
-	virtual void move(int offsetX, int offsetY);
 };
 
 class Point : public Location
@@ -24,6 +23,7 @@ class Point : public Location
  public:
 	Point(int x, int y);
 	virtual void show(HDC hdc);
+	virtual void move(int offsetX, int offsetY);
 };
 
 class Face : public Point
